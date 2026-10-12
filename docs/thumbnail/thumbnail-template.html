@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin:0; padding:0; width:1200px; height:630px; overflow:hidden; }
+  body { font-family: -apple-system, "Apple SD Gothic Neo", "Helvetica Neue", sans-serif; background:#0b1220; color:#e6edf3; position:relative; -webkit-font-smoothing:antialiased; }
+  .bg { position:absolute; inset:0;
+    background:
+      radial-gradient(820px 520px at 88% 12%, rgba(62,207,142,.26), transparent 62%),
+      radial-gradient(760px 520px at 6% 96%, rgba(99,102,241,.28), transparent 62%),
+      linear-gradient(135deg, #0b1220 0%, #0f172a 55%, #111827 100%); }
+  .grid { position:absolute; inset:0;
+    background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size:40px 40px; -webkit-mask-image: radial-gradient(900px 560px at 50% 50%, #000 30%, transparent 100%); }
+  .wrap { position:relative; height:630px; box-sizing:border-box; padding:60px 72px; display:flex; flex-direction:row; align-items:center; gap:40px; }
+  .left { flex:1; display:flex; flex-direction:column; justify-content:center; gap:20px; min-width:0; }
+  .right { width:400px; flex:none; display:flex; align-items:center; justify-content:flex-end; }
+  .series { font-size:21px; color:#9fb3c8; display:flex; align-items:center; gap:12px; font-weight:500; }
+  .series .num { background:#3ecf8e; color:#06281a; font-weight:800; padding:4px 12px; border-radius:999px; font-size:17px; letter-spacing:.04em; }
+  h1 { margin:0; font-size:68px; line-height:1.14; font-weight:800; letter-spacing:-0.025em; color:#f8fafc; }
+  h1 .accent { color:#3ecf8e; }
+  .sub { font-size:24px; line-height:1.45; color:#b6c2d1; font-weight:500; }
+  .sub .hl { color:#fbbf24; font-weight:700; }
+  .chips { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+  .chip { font-family:"SF Mono", Menlo, monospace; font-size:17px; padding:8px 14px; border-radius:9px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.06); color:#e6edf3; white-space:nowrap; }
+  .chip b { color:#3ecf8e; font-weight:600; }
+  .code { width:400px; box-sizing:border-box; background:rgba(2,6,23,.78); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:18px 22px 20px; font-family:"SF Mono", Menlo, monospace; font-size:14.5px; line-height:1.7; color:#cbd5e1; box-shadow:0 24px 70px rgba(0,0,0,.5); }
+  .code .fn { font-size:13.5px; margin-bottom:10px; display:flex; justify-content:space-between; color:#94a3b8; }
+  .code .fn .dot { display:inline-block; width:9px; height:9px; border-radius:50%; background:#3ecf8e; margin-right:8px; vertical-align:middle; }
+  .d { color:#7dd3fc } .c { color:#64748b } .hl2 { color:#fbbf24 } .k { color:#c084fc } .s { color:#86efac }
+  .date { position:absolute; right:72px; top:56px; font-size:18px; color:#9fb3c8; font-family:"SF Mono", Menlo, monospace; letter-spacing:.06em; }
+  .brand { position:absolute; left:72px; bottom:40px; font-size:16px; color:#64748b; font-weight:600; letter-spacing:.14em; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="grid"></div>
+<div class="date">2026.10</div>
+<div class="wrap">
+  <div class="left">
+    <div class="series"><span class="num">05-2</span> 클로드코드와 flex 만들기 · 회원가입</div>
+    <h1>회원가입 <span class="accent">로직</span><br>연결하기</h1>
+    <div class="sub"><span class="hl">중복 이메일을 숨기는 가입 흐름</span><br>zod 스키마 · 서버 액션 · useActionState · 메일 링크 라우트</div>
+    <div class="chips">
+      <span class="chip">next <b>16.4</b></span>
+      <span class="chip">supabase <b>auth</b></span>
+      <span class="chip">zod <b>4.6</b></span>
+      <span class="chip"><b>useActionState</b></span>
+      <span class="chip">route.ts <b>verifyOtp</b></span>
+    </div>
+  </div>
+  <div class="right">
+    <div class="code">
+      <div class="fn"><span><span class="dot"></span>lib/auth/actions.ts</span><span>05-2</span></div>
+      <div><span class="k">await</span> supabase.auth.<span class="d">signUp</span>({</div>
+      <div>&nbsp;&nbsp;email, password,</div>
+      <div>&nbsp;&nbsp;options: {</div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;data: { <span class="hl2">full_name</span>: name },</div>
+      <div>&nbsp;&nbsp;},</div>
+      <div>})</div>
+      <div><span class="d">redirect</span>(<span class="s">"/auth/check-email"</span>)</div>
+      <div class="c">// 이미 가입된 이메일도 같은 곳으로</div>
+    </div>
+  </div>
+</div>
+<div class="brand">flex · built with claude code</div>
+</body>
+</html>
