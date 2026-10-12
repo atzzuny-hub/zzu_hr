@@ -62,3 +62,80 @@ function Node({ x, y, active = false }: { x: number; y: number; active?: boolean
     </g>
   );
 }
+
+
+const STEPS = [
+    { title: "계정 만들기", description: "이름과 업무용 이메일로 가입" },
+    { title: "메일 인증", description: "받은 메일의 링크를 누르면 끝나요" },
+    { title: "회사 정보 등록", description: "회사명과 사업자등록번호 입력" },
+    { title: "승인 후 구성원 초대", description: "승인되면 구성원을 등록하고 초대해요" },
+] as const
+
+type StepsAsideProps = {
+    current: 1 | 2 | 3 | 4;
+};
+
+export function StepsAside({ current }: StepsAsideProps){
+    return(
+        <div className="flex flex-1 flex-col">
+            <BrandLogo />
+
+            <div className="flex flex-1 flex-col justify-center py-12">
+                <p className="text-[28px] font-bold leading-tight">
+                    가입하면
+                    <br />
+                    이렇게 진행돼요
+                </p>
+
+                <ol className="mt-10 flex flex-col">
+                    {STEPS.map((step, index) => {
+                        const number = index + 1
+                        const isCurrent = number === current
+                        const isLast = index === STEPS.length - 1
+
+                        return (
+                            <li
+                                key={step.title}
+                                aria-current={isCurrent ? "step" : undefined}
+                                className="flex gap-4"
+                            >
+                                <div className="flex flex-col items-center">
+                                    <span
+                                        className={
+                                            isCurrent
+                                                ? "flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground"
+                                                : "flex size-8 shrink-0 items-center justify-center rounded-full border border-white/30 text-sm font-semibold text-white/70"
+                                        }
+                                    >
+                                        {number}
+                                    </span>
+                                    {!isLast && (
+                                        <span
+                                            className="my-1 w-px flex-1 bg-white/20"
+                                            aria-hidden="true"
+                                        />
+                                    )}
+                                </div>
+
+                                <div className={isLast ? undefined : "pb-8"}>
+                                    <p
+                                        className={
+                                            isCurrent
+                                                ? "font-semibold text-white"
+                                                : "font-medium text-white/70"
+                                        }
+                                    >
+                                        {step.title}
+                                    </p>
+                                    <p className="mt-0.5 text-sm text-white/60">
+                                        {step.description}
+                                    </p>
+                                </div>
+                            </li>
+                        )
+                    })}
+                </ol>
+            </div>
+        </div>
+    )
+}

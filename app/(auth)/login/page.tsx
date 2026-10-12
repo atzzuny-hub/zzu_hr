@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-        <AuthSplitLayout aside={<BrandAside/>}>
-            <LoginForm/>
-        </AuthSplitLayout>
+    <AuthSplitLayout aside={<BrandAside/>}>
+        <LoginForm/>
+    </AuthSplitLayout>
   );
 }
